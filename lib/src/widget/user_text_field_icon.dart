@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 
-class UserTextField extends StatelessWidget {
+class UserTextFieldIcon extends StatefulWidget {
   final String label;
   final String hintText;
   final bool isPassword;
 
-  const UserTextField({
+  const UserTextFieldIcon({
     super.key,
     required this.label,
-    required this.hintText,
     required this.isPassword,
+    required this.hintText,
   });
 
+  @override
+  State<UserTextFieldIcon> createState() => _UserTextFieldIconState();
+}
+
+class _UserTextFieldIconState extends State<UserTextFieldIcon> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,10 +25,10 @@ class UserTextField extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+            padding: const EdgeInsets.all(8.0),
             child: Text(
-              label,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              widget.label,
+              style: const TextStyle(fontSize: 16),
             ),
           ),
           Container(
@@ -32,14 +37,16 @@ class UserTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(30.0),
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: TextField(
-                obscureText: isPassword,
+                obscureText: widget.isPassword,
                 decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.remove_red_eye_outlined)),
                   border: InputBorder.none,
-                  hintText: hintText,
+                  hintText: widget.hintText,
                   hintStyle: const TextStyle(
-                    fontSize: 16,
                     color: Color(0xff9B9B9B),
                   ),
                 ),

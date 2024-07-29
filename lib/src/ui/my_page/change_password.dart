@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hatin/src/widget/black_Button.dart';
+import 'package:hatin/src/widget/user_text_field_icon.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({super.key});
@@ -13,6 +15,7 @@ class _ChangePasswordState extends State<ChangePassword> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _buildAppBar(),
+      body: _body(),
     );
   }
 
@@ -24,8 +27,25 @@ class _ChangePasswordState extends State<ChangePassword> {
   }
 
   Widget _body() {
-    return const Column(
-      children: [],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          const UserTextFieldIcon(
+              label: "비밀번호를 입력하여 인증을 진행해주세요.",
+              hintText: "비밀번호를 입력해주세요.",
+              isPassword: true),
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: BlackButton(
+              label: "인증하기",
+              onPressed: () {},
+              buttonWidth: double.infinity,
+              buttonHeight: 56,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

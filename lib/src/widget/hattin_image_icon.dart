@@ -25,4 +25,6 @@ class ImagePath {
   static String get mypageOn => "asset/image/bottom_nav_mypage_on.png";
   static String get mypageOff => "asset/image/bottom_nav_mypage_off.png";
   static String get onboardLogo => "asset/image/onboard_logo.png";
+  static String get signupCenter => "asset/image/signup_center.png";
+  static String get findEmail => "asset/image/find_email.png";
 }

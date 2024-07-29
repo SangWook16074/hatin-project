@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hatin/src/ui/app/app.dart';
+import 'package:hatin/src/ui/login/login_page.dart';
+import 'package:hatin/src/ui/login/login_signup_page1.dart';
 import 'package:hatin/src/widget/gradient_button.dart';
 import 'package:hatin/src/widget/custom_outlined_button.dart';
 import 'package:hatin/src/widget/hattin_image_icon.dart';
 
-class OnboardView extends StatelessWidget {
+class OnboardView extends StatefulWidget {
   const OnboardView({super.key});
 
+  @override
+  State<OnboardView> createState() => _OnboardViewState();
+}
+
+class _OnboardViewState extends State<OnboardView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,6 +25,7 @@ class OnboardView extends StatelessWidget {
             _logo(),
             _discription(),
             _buttons(),
+            _notLoginBtn(),
           ],
         ),
       ),
@@ -102,15 +111,58 @@ class OnboardView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 4.0),
                 child: GradientButton(
                   label: "로그인하기",
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ),
+                    );
+                  },
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4.0),
-                child: CustomOutlinedButton(onPressed: () {}, label: "회원가입"),
-              )
+                child: CustomOutlinedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginSignup1(),
+                        ),
+                      );
+                    },
+                    label: "회원가입"),
+              ),
             ],
           ),
         ),
+      );
+
+  Widget _notLoginBtn() => Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: TextButton(
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => const App()));
+            },
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "건너뛰기",
+                  style: TextStyle(
+                    color: Color(0xff9B9B9B),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  size: 18,
+                  color: Color(0xff9B9B9B),
+                ),
+              ],
+            )),
       );
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hatin/src/widget/black_Button.dart';
 import 'package:hatin/src/widget/nomal_text_field.dart';
 import 'package:hatin/src/widget/select_button.dart';
 import 'package:hatin/src/widget/user_text_field.dart';
@@ -65,7 +66,13 @@ class _ChangeUserInfoState extends State<ChangeUserInfo> {
   }
 
   Widget _changeGender() {
-    return const SelectButton();
+    return const SelectButton(
+      titleLabel: "성별",
+      leftLabel: "여자",
+      rightLabel: "남자",
+      buttonWidth: 64,
+      buttonHeight: 45,
+    );
   }
 
   Widget _changeBirthday() {
@@ -92,39 +99,10 @@ class _ChangeUserInfoState extends State<ChangeUserInfo> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
       child: BlackButton(
+        buttonWidth: double.infinity,
+        buttonHeight: 56,
         label: "변경하기",
         onPressed: () {},
-      ),
-    );
-  }
-}
-
-class BlackButton extends StatelessWidget {
-  final void Function()? onPressed;
-  final String label;
-  const BlackButton({super.key, this.onPressed, required this.label})
-      : assert(onPressed != null, "액션 함수를 반드시 지정해야 합니다 onPressed is Null");
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      highlightColor: Colors.white.withOpacity(0.5),
-      borderRadius: BorderRadius.circular(36.0),
-      child: Ink(
-        height: 56,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(36.0),
-          color: Colors.black,
-        ),
-        child: Center(
-          child: Text(
-            label,
-            style: const TextStyle(
-                color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
-          ),
-        ),
       ),
     );
   }

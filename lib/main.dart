@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hatin/src/repository/routin_repository.dart';
 import 'package:hatin/src/service/routin_service.dart';
-import 'package:hatin/src/ui/app/app.dart';
 import 'package:hatin/src/ui/app/app_view_model.dart';
 import 'package:hatin/src/ui/onboard/onboard_view.dart';
 import 'package:hatin/src/ui/routine/routin_add_page.dart';
@@ -46,7 +45,7 @@ class MyApp extends StatelessWidget {
                 unselectedItemColor: Color(0xffd9d9d9),
                 selectedItemColor: Color(0xffFE4F28))),
         routes: {
-          "/": (context) => const App(),
+          "/": (context) => const OnboardView(),
           "/onboard": (context) => const OnboardView(),
           "/routinAddPage": (context) => const RoutinAddPage(),
         },

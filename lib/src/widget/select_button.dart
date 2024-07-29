@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 
 class SelectButton extends StatefulWidget {
-  const SelectButton({super.key});
+  final String titleLabel;
+  final String leftLabel;
+  final String rightLabel;
+  final double buttonWidth;
+  final double buttonHeight;
+
+  const SelectButton({
+    super.key,
+    required this.titleLabel,
+    required this.leftLabel,
+    required this.rightLabel,
+    required this.buttonWidth,
+    required this.buttonHeight,
+  });
 
   @override
   State<SelectButton> createState() => _SelectButtonState();
@@ -28,63 +41,60 @@ class _SelectButtonState extends State<SelectButton> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(top: 15.0),
+        Align(
+          alignment: Alignment.centerLeft,
           child: SizedBox(
-              width: double.infinity,
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  "성별",
-                  style: TextStyle(fontSize: 16),
-                ),
-              )),
+            width: 50,
+            child: Text(
+              widget.titleLabel,
+              style: const TextStyle(fontSize: 16),
+            ),
+          ),
         ),
-        SizedBox(
-          width: double.infinity,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: _isFemaleSelected
-                        ? Colors.black
-                        : const Color(0xffF1F3F5),
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  child: TextButton(
-                    onPressed: _onFemalePressed,
-                    child: Text(
-                      "여자",
-                      style: TextStyle(
-                          color: _isFemaleSelected ? Colors.white : Colors.grey,
-                          fontSize: 16),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 10.0),
+              child: Container(
+                width: widget.buttonWidth,
+                height: widget.buttonHeight,
                 decoration: BoxDecoration(
-                  color:
-                      _isMaleSelected ? Colors.black : const Color(0xffF1F3F5),
+                  color: _isFemaleSelected
+                      ? Colors.black
+                      : const Color(0xffF1F3F5),
                   borderRadius: BorderRadius.circular(30.0),
                 ),
                 child: TextButton(
-                  onPressed: _onMalePressed,
+                  onPressed: _onFemalePressed,
                   child: Text(
-                    "남자",
+                    widget.leftLabel,
                     style: TextStyle(
-                        color: _isMaleSelected ? Colors.white : Colors.grey,
+                        color: _isFemaleSelected ? Colors.white : Colors.grey,
                         fontSize: 16),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+            Container(
+              width: widget.buttonWidth,
+              height: widget.buttonHeight,
+              decoration: BoxDecoration(
+                color: _isMaleSelected ? Colors.black : const Color(0xffF1F3F5),
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              child: TextButton(
+                onPressed: _onMalePressed,
+                child: Text(
+                  widget.rightLabel,
+                  style: TextStyle(
+                      color: _isMaleSelected ? Colors.white : Colors.grey,
+                      fontSize: 16),
+                ),
+              ),
+            ),
+          ],
         ),
       ],
     );
