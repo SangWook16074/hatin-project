@@ -4,6 +4,7 @@ import 'package:hatin/src/model/routin.dart';
 import 'package:hatin/src/ui/routine/routin_add_page.dart';
 import 'package:hatin/src/ui/routine/routin_modify_page.dart';
 import 'package:hatin/src/ui/routine/routin_view_model.dart';
+import 'package:hatin/src/widget/hatin_dialog.dart';
 import 'package:provider/provider.dart';
 
 class RoutineView extends StatefulWidget {
@@ -160,8 +161,8 @@ class _RoutineViewState extends State<RoutineView> {
                   ),
                   if (selectedRoutineIndex == index)
                     Positioned(
-                      top: 30,
-                      right: 20,
+                      top: 12,
+                      right: 30,
                       child: _buildEditDeleteBox(),
                     ),
                 ],
@@ -206,8 +207,7 @@ class _RoutineViewState extends State<RoutineView> {
           GestureDetector(
             key: const Key("RoutinDelBtn"),
             onTap: () {
-              Provider.of<RoutinViewModel>(context, listen: false)
-                  .showDeleteDialog(context);
+              _showDeleteAccountDialog();
             },
             child: const Text(
               "삭제",
@@ -216,6 +216,31 @@ class _RoutineViewState extends State<RoutineView> {
           ),
         ],
       ),
+    );
+  }
+
+  void _showDeleteAccountDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return HatinDialog(
+          commitLabel: "삭제",
+          cancelLabel: "취소",
+          content: const [
+            "루틴의 모든 기록이",
+            "영구적으로 삭제됩니다.",
+            "",
+            "정말 삭제하시겠습니까?",
+          ],
+          onCommit: () {
+            Navigator.of(context).pop();
+            // 계정 삭제 로직 추가
+          },
+          onCancel: () {
+            Navigator.of(context).pop();
+          },
+        );
+      },
     );
   }
 }

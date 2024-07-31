@@ -27,4 +27,7 @@ class ImagePath {
   static String get onboardLogo => "asset/image/onboard_logo.png";
   static String get signupCenter => "asset/image/signup_center.png";
   static String get findEmail => "asset/image/find_email.png";
+  static String get love => "asset/image/love.png";
+  static String get chat => "asset/image/chat.png";
+  static String get share => "asset/image/share.png";
 }

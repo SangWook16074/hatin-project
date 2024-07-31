@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 
 class UserList extends StatelessWidget {
   final String userName;
-  const UserList({super.key, required this.userName});
+  final String followText;
+  final VoidCallback onButtonPressed;
+  final Color textColor;
+
+  const UserList(
+      {super.key,
+      required this.userName,
+      required this.onButtonPressed,
+      required this.followText,
+      required this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -11,19 +20,22 @@ class UserList extends StatelessWidget {
       width: double.infinity,
       height: 51,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              userName,
-              style: const TextStyle(fontSize: 16),
+            TextButton(
+              onPressed: onButtonPressed,
+              child: Text(
+                userName,
+                style: const TextStyle(fontSize: 16, color: Color(0xff111111)),
+              ),
             ),
             TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "맞팔로우",
-                  style: TextStyle(fontSize: 16),
+                onPressed: onButtonPressed,
+                child: Text(
+                  followText,
+                  style: TextStyle(fontSize: 16, color: textColor),
                 )),
           ],
         ),

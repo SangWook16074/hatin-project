@@ -21,9 +21,12 @@ class UserTextFieldButton extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(
-              label,
-              style: const TextStyle(fontSize: 16),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child: Text(
+                label,
+                style: const TextStyle(fontSize: 16),
+              ),
             ),
           ),
           Row(

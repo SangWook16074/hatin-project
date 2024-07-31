@@ -1,5 +1,9 @@
+// MyPage.dart
 import 'package:flutter/material.dart';
+import 'package:hatin/src/ui/friend/my_post_view.dart';
+import 'package:hatin/src/ui/friend/block_friend_view.dart';
 import 'package:hatin/src/ui/my_page/follow_view.dart';
+import 'package:hatin/src/ui/my_page/following_view.dart';
 import 'package:hatin/src/ui/my_page/modify_user_info.dart';
 import 'package:hatin/src/widget/follw_follwing.dart';
 import 'package:hatin/src/widget/service_button.dart';
@@ -107,26 +111,40 @@ class _MyPageState extends State<MyPage> {
   }
 
   Widget _followFollowing() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        FollwFollwing(
-            label: "팔로워",
-            onButtonPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const FollowView()));
-            }),
-        const Text(
-          "|",
-          style: TextStyle(fontSize: 16, color: Color(0xff9B9B9B)),
-        ),
-        FollwFollwing(
-            label: "팔로잉",
-            onButtonPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const FollowView()));
-            }),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FollwFollwing(
+              label: "팔로워",
+              onButtonPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const FollowView(
+                      selectedTab: 0,
+                    ),
+                  ),
+                );
+              }),
+          const Text(
+            "|",
+            style: TextStyle(fontSize: 16, color: Color(0xff9B9B9B)),
+          ),
+          FollwFollwing(
+              label: "팔로잉",
+              onButtonPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const FollowingView(
+                            selectedTab: 1,
+                          )),
+                );
+              }),
+        ],
+      ),
     );
   }
 
@@ -142,7 +160,14 @@ class _MyPageState extends State<MyPage> {
                 "게시글 관리",
                 style: TextStyle(fontSize: 14, color: Color(0xff9B9B9B)),
               )),
-          ServiceButton(label: "내 게시글", onButtonPressed: () {}),
+          ServiceButton(
+              label: "내 게시글",
+              onButtonPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MyPostView()));
+              }),
           ServiceButton(label: "내 댓글", onButtonPressed: () {}),
         ],
       ),
@@ -161,7 +186,14 @@ class _MyPageState extends State<MyPage> {
                 "친구 관리",
                 style: TextStyle(fontSize: 14, color: Color(0xff9B9B9B)),
               )),
-          ServiceButton(label: "차단 관리", onButtonPressed: () {}),
+          ServiceButton(
+              label: "차단 관리",
+              onButtonPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const BlockFriendView()));
+              }),
           const ServiceSwitchButton(label: "팔로우 허락 받기"),
           const ServiceSwitchButton(label: "알림 받기"),
         ],
