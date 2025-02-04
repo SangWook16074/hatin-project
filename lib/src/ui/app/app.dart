@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hatin/src/ui/app/app_view_model.dart';
+import 'package:hatin/src/ui/home/home_view.dart';
 import 'package:provider/provider.dart';
 
 class App extends StatelessWidget {
@@ -17,9 +18,7 @@ class App extends StatelessWidget {
         builder: (context, provider, child) => IndexedStack(
           index: provider.pageIndex,
           children: [
-            Container(
-              color: Colors.red,
-            ),
+            const HomeView(), // 홈 UI
             Container(
               color: Colors.yellow,
             ),
@@ -44,10 +43,10 @@ class App extends StatelessWidget {
             showUnselectedLabels: false,
             type: BottomNavigationBarType.fixed,
             items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: "Rotin"),
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: "Feed"),
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: "MyPage"),
             ]);
       });
 }
